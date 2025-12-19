@@ -2,8 +2,17 @@
 *.db
 *.sqlite
 *.sqlite3
+database.db
+backend/database.db
 
-# Go build artifacts
+# Go dependency files (users build from scratch)
+go.mod
+go.sum
+backend/go.mod
+backend/go.sum
+vendor/
+
+# Go build artifacts and binaries
 backend/bin/
 backend/dist/
 *.exe
@@ -15,17 +24,22 @@ backend/dist/
 *.out
 go.work
 
-# Go dependencies (optional - some prefer to commit go.sum)
-# vendor/
+# Frontend dependency files
+bun.lock
+bun.lockb
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
 
 # React/Frontend build output
 frontend/dist/
 frontend/build/
+dist/
+build/
 
 # Node/Bun dependencies
 node_modules/
 frontend/node_modules/
-bun.lockb
 
 # Environment variables
 .env
@@ -65,3 +79,6 @@ Thumbs.db
 *.temp
 .cache/
 
+# Build scripts (if auto-generated)
+build.sh
+showdatabase.sh
