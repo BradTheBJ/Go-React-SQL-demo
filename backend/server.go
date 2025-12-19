@@ -29,7 +29,6 @@ func main() {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
-		
 
 		var storedPassword string
 		err := db.QueryRow(
@@ -68,8 +67,8 @@ func main() {
 		}
 
 		if json.Email == "" || json.Password == "" {
-    	c.JSON(http.StatusBadRequest, gin.H{"error": "email and password are required"})
-    	return
+			c.JSON(http.StatusBadRequest, gin.H{"error": "email and password are required"})
+			return
 		}
 
 		_, err := db.Exec(
@@ -88,12 +87,21 @@ func main() {
 		})
 	})
 
+	// Serve static files from React build
 	router.Static("/assets", "../frontend/dist/assets")
+	router.StaticFile("/vite.svg", "../frontend/dist/vite.svg")
+	router.StaticFile("/favicon.ico", "../frontend/dist/vite.svg")
 
+	// Serve index.html for all non-API routes (SPA routing)
 	router.NoRoute(func(c *gin.Context) {
+		path := c.Request.URL.Path
+		// Don't serve index.html for API routes or static assets
+		if len(path) >= 4 && path[:4] == "/api" {
+			c.JSON(http.StatusNotFound, gin.H{"error": "Not found"})
+			return
+		}
 		c.File("../frontend/dist/index.html")
 	})
 
 	router.Run(":8080")
 }
-
