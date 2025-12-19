@@ -29,6 +29,7 @@ func main() {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
+		
 
 		var storedPassword string
 		err := db.QueryRow(
@@ -64,6 +65,11 @@ func main() {
 		if err := c.ShouldBindJSON(&json); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
+		}
+
+		if json.Email == "" || json.Password == "" {
+    	c.JSON(http.StatusBadRequest, gin.H{"error": "email and password are required"})
+    	return
 		}
 
 		_, err := db.Exec(
