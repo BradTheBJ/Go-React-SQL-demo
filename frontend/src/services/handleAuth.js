@@ -1,18 +1,28 @@
 export function signUp(email, password) {
-  alert(`Attempting to create user: ${email} with the password: ${password}`);
   return fetch("/signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-  }).then(res => res.json());
+  }).then(async (res) => {
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || "Signup failed");
+    }
+    return data;
+  });
 }
 
 export function login(email, password) {
-  alert(`Attempting to login as user: ${email}`);
   return fetch("/login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-  }).then(res => res.json());
+  }).then(async (res) => {
+    const data = await res.json();
+    if (!res.ok) {
+      throw new Error(data.error || "Login failed");
+    }
+    return data;
+  });
 }
 
