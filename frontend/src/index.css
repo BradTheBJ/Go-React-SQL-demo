@@ -1,11 +1,11 @@
 :root {
-    --color-text-dark: #ffffff;       /* bright text for contrast */
-    --color-text-medium: #cccccc;     /* slightly dimmer for secondary text */
-    --color-text-light: #aaaaaa;      /* for less important text */
-    --color-input-bg: #2a2a2a;        /* dark input background */
-    --color-button-bg: #3a3a3a;       /* dark button background */
-    --color-border: #5a5a5a;          /* gray border */
-    --color-body-bg: #121212;         /* very dark background */
+    --color-text-dark: #ffffff;
+    --color-text-medium: #cccccc;
+    --color-text-light: #aaaaaa;
+    --color-input-bg: #2a2a2a;
+    --color-button-bg: #3a3a3a;
+    --color-border: #5a5a5a;
+    --color-body-bg: #121212;
     --font-main: "JetBrainsMono Nerd Font", monospace;
     --font-size-h1: 56px;
     --font-size-main: 20px;
@@ -13,6 +13,14 @@
 
 body {
     background-color: var(--color-body-bg);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+body > * {
+    margin: 1rem 0;
 }
 
 h1 {
@@ -63,7 +71,6 @@ input {
     border: 1px solid var(--color-border);
     padding: 0.25rem 0.5rem;
 }
-
 
 
 
