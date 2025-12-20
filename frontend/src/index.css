@@ -7,7 +7,8 @@
     --color-border: #5a5a5a;          /* gray border */
     --color-body-bg: #121212;         /* very dark background */
     --font-main: "JetBrainsMono Nerd Font", monospace;
-    --font-size-main: 2rem;
+    --font-size-h1: 56px;
+    --font-size-main: 20px;
 }
 
 body {
@@ -16,7 +17,7 @@ body {
 
 h1 {
     font-family: var(--font-main);
-    font-size: var(--font-size-main);
+    font-size: var(--font-size-h1);
     text-align: center;
     color: var(--color-text-dark);
 }
